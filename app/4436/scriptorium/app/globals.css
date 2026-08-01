@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    background: #B8935F;
+    color: #050505;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #050505;
+    color: #F2EFE7;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-spectral), Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 1px solid #B8935F;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* the bracket motif — the site's signature interactive element,
+     styled after scribal marginalia / editorial annotation marks */
+  .bracket-link {
+    @apply relative inline-flex items-center gap-2 font-mono text-sm tracking-wide text-ink transition-colors duration-300;
+  }
+  .bracket-link::before {
+    content: "[";
+    @apply text-ink-dim transition-colors duration-300;
+  }
+  .bracket-link::after {
+    content: "]";
+    @apply text-ink-dim transition-colors duration-300;
+  }
+  .bracket-link:hover {
+    @apply text-brass;
+  }
+  .bracket-link:hover::before,
+  .bracket-link:hover::after {
+    @apply text-brass;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-widest2 text-ink-dim;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center font-mono text-[11px] uppercase tracking-widest2 text-ink-dim border border-rule rounded-sm px-3 py-2;
+  }
+
+  .hairline {
+    @apply border-t border-rule;
+  }
+
+  .container-page {
+    @apply mx-auto max-w-page px-6 sm:px-10;
+  }
+}

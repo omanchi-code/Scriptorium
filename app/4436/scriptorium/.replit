@@ -1,0 +1,15 @@
+modules = ["nodejs-20"]
+hidden = ["node_modules", ".next", ".git"]
+
+# Replit's webview only reaches servers listening on 0.0.0.0, and Next's
+# dev server binds to localhost by default — the -H flag fixes that.
+# Postgres/Prisma/etc. still come from the DATABASE_URL you set in Secrets.
+[run]
+args = ["npm", "run", "dev", "--", "-p", "3000", "-H", "0.0.0.0"]
+
+[run.env]
+PORT = "3000"
+
+[[ports]]
+localPort = 3000
+externalPort = 80

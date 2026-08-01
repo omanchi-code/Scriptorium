@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Needs a real Postgres database — the free tiers from Neon, Supabase, or
+// Vercel Postgres all work. See .env.example / README for setup. A
+// serverless host's local filesystem doesn't persist between requests, so
+// SQLite-on-disk isn't a viable option here in production.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Mirrors domains/knowledge/asset-kinds.ts's OutputKind exactly. This is
+// NOT a second source of truth by convention alone — Prisma has no
+// mechanism to generate a database enum from a TypeScript union, so
+// some form of duplication between this list and asset-kinds.ts is
+// unavoidable with this toolchain. What makes it safe rather than
+// "blindly duplicated": domains/knowledge/asset-kinds.ts ends with a
+// compile-time assertion that this enum and the TypeScript OutputKind
+// union have exactly the same members. If they ever drift — someone
+// adds a kind to one and forgets the other — the build fails instead of
+// silently allowing the gap the brief this was built against was
+// specifically trying to close. Prisma's generated TS type for this
+// enum is a plain string-literal union under the hood (not a nominal
+// type), so it's structurally identical to OutputKind — every existing
+// `kind: OutputKind` parameter throughout the codebase remains valid
+// with zero changes required at those call sites.
+//
+// Considered and rejected: writing a script to generate this enum block
+// from OUTPUTS automatically. For an 11-value list that changes rarely
+// (adding an output kind is already a multi-file change — new adapter,
+// registry entry, asset-kinds.ts entry, PublishingGraph entry), a
+// codegen step is more operational complexity than the compile-time
+// assertion below buys safety for.
+enum OutputKind {
+  evidence_cards
+  evidence_card_image
+  blog_article
+  cinematic_artwork
+  book_trailer
+  youtube_short
+  instagram_reel
+  facebook_post
+  podcast_script
+  newsletter
+  seo_metadata
+}
+
+model User {
+  id                 String              @id @default(cuid())
+  email              String              @unique
+  passwordHash       String
+  createdAt          DateTime            @default(now())
+  generations        Generation[]
+  publishingSessions PublishingSession[]
+
+  // Brute-force protection (Section G security review). Scoped per-email,
+  // not per-IP: with a single admin account, the email that matters is
+  // fixed and known to its owner, so there's no user-enumeration concern
+  // to weigh against IP-based tracking's own downsides (spoofable
+  // X-Forwarded-For headers without a trusted-proxy allowlist, which
+  // would be a second problem introduced while solving the first).
+  failedLoginAttempts Int       @default(0)
+  lockoutUntil        DateTime?
+}
+
+// One chapter, one publishing intent, many coordinated outputs. Every
+// Generation belongs to exactly one of these — the model that makes
+// "which outputs came from working on this chapter together" an
+// actual queryable relationship instead of an implicit assumption.
+model PublishingSession {
+  id           String       @id @default(cuid())
+  userId       String
+  user         User         @relation(fields: [userId], references: [id])
+  chapterTitle String
+  chapterText  String
+  bookLabel    String
+  // Every output kind ever requested within this session, appended to
+  // as they're generated (see domains/publishing/session.ts). Nullable
+  // rather than defaulted to "[]" — Prisma's Json defaults are
+  // provider-specific enough to be worth avoiding; the app treats null
+  // as empty. Values are OutputKind strings, but this stays Json rather
+  // than a typed array — Prisma/Postgres can't express "array of this
+  // enum" inside a JSON column. Constrained at the application layer
+  // instead: recordRequestedOutput()'s `kind: OutputKind` parameter,
+  // same as everywhere else in the codebase.
+  requestedOutputs Json?
+  createdAt    DateTime     @default(now())
+  generations  Generation[]
+
+  @@index([userId, createdAt])
+}
+
+model Generation {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+
+  sessionId    String?
+  session      PublishingSession? @relation(fields: [sessionId], references: [id])
+
+  kind         OutputKind
+
+  // Which layer of the Three-Layer Transformation Model this row
+  // belongs to — "publishing_asset" or "distribution_adaptation" (see
+  // domains/publishing/layers.ts, the single source of truth this is
+  // derived from at generation time). Persisted rather than only
+  // computed on read, so it's real queryable history even if a kind's
+  // classification is ever reconsidered later.
+  layer        String?
+
+  // Provenance (Refinement 3): the Generation this one was derived
+  // from, if any — e.g. a Distribution Adaptation pointing back at the
+  // Publishing Asset it repackaged. Schema-ready, not yet populated by
+  // any adapter: every output today still generates directly from the
+  // raw chapter rather than from a prior Generation. See the honesty
+  // note in domains/publishing/distribution-adaptation.ts.
+  derivedFromId String?
+  derivedFrom   Generation?  @relation("Provenance", fields: [derivedFromId], references: [id])
+  derivedAssets Generation[] @relation("Provenance")
+
+  chapterTitle String
+  chapterText  String
+
+  // The Generation Plan constructed before any provider was called —
+  // requested output, execution steps, dependencies between them, and
+  // any intermediate artifact names. See domains/publishing/plan.ts.
+  plan             Json?
+
+  // Which provider(s) actually ran, and with what model/config — kept
+  // even though today there's only ever one implementation per kind, so
+  // that becomes a real historical record rather than something you'd
+  // have to infer from `kind` after the fact.
+  providerMetadata Json?
+
+  // "done" | "processing" | "error" — explicit rather than inferred from
+  // which of the fields below happen to be populated. Failed
+  // generations are now persisted too (they weren't before this
+  // refinement), because a permanent publishing record has to include
+  // what didn't work, not just what did.
+  status       String   @default("done")
+  errorMessage String?
+
+  content      String?  // text outputs
+  mediaUrl     String?  // image/video outputs
+  mediaType    String?  // "image" | "video"
+  taskId       String?  @unique // links an async Runway video task back to its row
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([sessionId])
+  @@index([derivedFromId])
+}
