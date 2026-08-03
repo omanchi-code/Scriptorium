@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Card from "@/components/ui/Card";
-import type { Book } from "./data";
+import type { Book } from "../data";
 
 export default function BookCard({
   book,
