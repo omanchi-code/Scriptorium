@@ -1,4 +1,7 @@
-import { prisma } from "@/lib/prisma";
+import { Prisma } from 
+"@prisma/client";
+import { prisma } from 
+"@/lib/prisma";
 import { OutputKind } from "@/domains/knowledge/asset-kinds";
 import { GenerationResult, KnowledgeAssetInput } from "./types";
 import { GenerationPlan } from "./plan";
@@ -46,7 +49,8 @@ export async function persistGenerationResult(
   result: GenerationResult,
   sessionId: string,
   plan: GenerationPlan,
-  providerMetadata: Record<string, unknown>,
+ providerMetadata: 
+ Prisma.InputJsonValue,
   derivedFromId?: string
 ) {
   const layer = layerFor(kind);
