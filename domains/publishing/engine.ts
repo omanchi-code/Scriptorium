@@ -13,10 +13,16 @@ import { EngineContext, EngineExecutionResult, KnowledgeAssetInput } from "./typ
 
 /** Which provider(s) actually ran for this output, derived from the
  * plan's own steps rather than a separate kind→provider switch. */
-function providerMetadataForPlan(plan: GenerationPlan, kind: OutputKind): 
+function providerMetadataForPlan(
+  plan: GenerationPlan,
+  kind: OutputKind
 ): Prisma.InputJsonValue {
   const capabilities = Array.from(
-    new Set(plan.steps.filter((s) => s.output === kind).map((s) => s.requiresCapability))
+    new Set(
+      plan.steps
+        .filter((s) => s.output === kind)
+        .map((s) => s.requiresCapability)
+    )
   );
   const providers = capabilities.map((c) => CAPABILITY_PROVIDER[c]);
   return providers.length === 1 ? providers[0] : { steps: providers };
