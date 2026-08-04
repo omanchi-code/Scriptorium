@@ -1,7 +1,7 @@
 import { OutputKind } from "@/domains/knowledge/asset-kinds";
 import { callClaude } from "@/domains/publishing/providers/anthropic";
-import { Prisma } from 
-"@prisma/client";
+import { Prisma } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { getAdapter } from "./registry";
 import { createDraftAsset, nextEvidenceCardNumber, persistGenerationResult } from "./persistence";
 import { logGenerationEvent } from "./logging";
