@@ -1,6 +1,7 @@
 import { OutputKind } from "@/domains/knowledge/asset-kinds";
 import { callClaude } from "@/domains/publishing/providers/anthropic";
-import { prisma } from "@/lib/prisma";
+import { Prisma } from 
+"@prisma/client";
 import { getAdapter } from "./registry";
 import { createDraftAsset, nextEvidenceCardNumber, persistGenerationResult } from "./persistence";
 import { logGenerationEvent } from "./logging";
@@ -12,7 +13,8 @@ import { EngineContext, EngineExecutionResult, KnowledgeAssetInput } from "./typ
 
 /** Which provider(s) actually ran for this output, derived from the
  * plan's own steps rather than a separate kind→provider switch. */
-function providerMetadataForPlan(plan: GenerationPlan, kind: OutputKind): Record<string, unknown> {
+function providerMetadataForPlan(plan: GenerationPlan, kind: OutputKind): 
+): Prisma.InputJsonValue {
   const capabilities = Array.from(
     new Set(plan.steps.filter((s) => s.output === kind).map((s) => s.requiresCapability))
   );
