@@ -1,10 +1,12 @@
+import { Prisma } from 
+"@prisma/client";
+
 export type Capability =
   | "long_form_reasoning"
   | "image_generation"
   | "cinematic_video"
   | "ocr"
   | "speech_synthesis";
-
 /**
  * Which provider currently satisfies each capability, and with what
  * config. This is the one place in the codebase that names Anthropic,
@@ -18,7 +20,7 @@ export type Capability =
  * speech. It's listed anyway so the capability vocabulary matches what
  * the architecture anticipates, not just what's wired up today.
  */
-export const CAPABILITY_PROVIDER: Record<Capability, Record<string, unknown>> = {
+export const CAPABILITY_PROVIDER: Record<Capability, Prisma.InputJsonValue> = {
   long_form_reasoning: {
     provider: "anthropic",
     model: process.env.ANTHROPIC_MODEL || "claude-sonnet-5",
