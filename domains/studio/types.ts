@@ -1,10 +1,11 @@
+import { OutputKind } from "@/domains/knowledge/asset-kinds";
 export type StudioStatus = "idle" | "loading" | "processing" | "done" | "error";
 
 /** What a single output card needs to render — nothing more. Built by
  * useStudioGeneration from the raw API response; components never see
  * the raw response shape. */
 export type StudioCardViewModel = {
-  kind: string;
+  kind: OutputKind;
   label: string;
   description: string;
   status: StudioStatus;
