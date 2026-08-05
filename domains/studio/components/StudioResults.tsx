@@ -1,3 +1,4 @@
+import { OutputKind } from "@/domains/knowledge/asset-kinds";
 "use client";
 
 import Panel from "@/components/ui/Panel";
@@ -28,9 +29,9 @@ export default function StudioResults({
   onGenerateOne,
 }: {
   cards: StudioCardViewModel[];
-  expandedKind: string | null;
-  onToggleExpanded: (kind: string) => void;
-  onGenerateOne: (kind: string) => void;
+  expandedKind: OutputKind | null;
+  onToggleExpanded: (kind: OutputKind) => void;
+  onGenerateOne: (kind: OutputKind) => void;
 }) {
   return (
     <div className="grid sm:grid-cols-2 gap-px bg-rule">
