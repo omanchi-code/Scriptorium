@@ -1,5 +1,6 @@
 import { OutputKind } from "@/domains/knowledge/asset-kinds";
 import { callClaude } from "@/domains/publishing/providers/anthropic";
+import { callPollinationsText } from "@/domains/publishing/providers/pollinations";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getAdapter } from "./registry";
@@ -39,8 +40,10 @@ function buildEngineContext(
   sessionId: string,
   plan: GenerationPlan
 ): EngineContext {
+  const textProvider = process.env.TEXT_PROVIDER === "anthropic" ? callClaude : callPollinationsText;
+
   return {
-    callClaude,
+    callClaude: textProvider,
     createDraftAsset: (kind, draftInput) => createDraftAsset(kind, draftInput, sessionId, plan),
     nextEvidenceCardNumber: () => nextEvidenceCardNumber(input.userId),
   };
