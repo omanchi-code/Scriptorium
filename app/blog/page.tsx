@@ -1,4 +1,5 @@
 import { CATEGORIES } from "@/domains/knowledge/taxonomy";
+import { BLOG_POSTS } from "@/domains/blog/posts";
 import Link from "next/link";
 
 export default function BlogPage({
@@ -7,6 +8,7 @@ export default function BlogPage({
   searchParams: { category?: string };
 }) {
   const active = CATEGORIES.find((c) => c.slug === searchParams.category);
+  const posts = active ? BLOG_POSTS.filter((p) => p.category === active.slug) : BLOG_POSTS;
 
   return (
     <div className="container-page py-16 sm:py-24">
@@ -37,7 +39,7 @@ export default function BlogPage({
                     active?.slug === cat.slug ? "text-brass" : "hover:text-brass"
                   }`}
                 >
-                  {cat.label}
+                  {cat.label} ({BLOG_POSTS.filter((p) => p.category === cat.slug).length})
                 </Link>
               </li>
             ))}
@@ -45,18 +47,24 @@ export default function BlogPage({
         </nav>
 
         <div className="hairline pt-10 lg:border-t-0 lg:pt-0">
-          <p className="text-ink-dim leading-relaxed max-w-prose mb-2">
-            {active
-              ? active.description
-              : "No essays published yet. New writing in Biblical Studies, Theology, Economics & Public Policy, Business & Leadership, Psychology, and Fiction Worth Reading will appear here first."}
-          </p>
-          <p className="font-mono text-xs text-ink-dim mt-8">
-            Want to know the moment something new goes up?{" "}
-            <Link href="/newsletter" className="text-brass underline underline-offset-4">
-              Subscribe to the newsletter
-            </Link>
-            .
-          </p>
+          {posts.length === 0 ? (
+            <p className="text-ink-dim leading-relaxed max-w-prose">
+              No essays published in this category yet.
+            </p>
+          ) : (
+            <ul className="space-y-10">
+              {posts.map((post) => (
+                <li key={post.slug} className="hairline pt-8 first:pt-0 first:border-0">
+                  <Link href={`/blog/${post.slug}`} className="group">
+                    <h2 className="font-display text-2xl group-hover:text-brass transition-colors duration-300 mb-2">
+                      {post.title}
+                    </h2>
+                    <p className="text-ink-dim text-sm leading-relaxed">{post.excerpt}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
