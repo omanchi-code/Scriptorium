@@ -3,6 +3,7 @@ import { BOOKS } from "@/domains/books/data";
 import BookCard from "@/domains/books/components/BookCard";
 import { CATEGORIES } from "@/domains/knowledge/taxonomy";
 import TransformationDiagram from "@/domains/publishing/components/TransformationDiagram";
+import { BLOG_POSTS } from "@/domains/blog/posts";
 
 const WORKFLOW = ["Research", "Writing", "Publishing", "Media", "Learning", "Impact"];
 
