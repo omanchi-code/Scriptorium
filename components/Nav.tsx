@@ -8,13 +8,14 @@ const INDEX = [
   { n: "01", label: "Home", href: "/" },
   { n: "02", label: "About the Author", href: "/about" },
   { n: "03", label: "Books", href: "/books" },
-  { n: "04", label: "Blog", href: "/blog" },
-  { n: "05", label: "Evidence Library", href: "/evidence-library" },
-  { n: "06", label: "AI Studio", href: "/studio" },
-  { n: "07", label: "Newsletter", href: "/newsletter" },
-  { n: "08", label: "Resources", href: "/resources" },
-  { n: "09", label: "Media", href: "/media" },
-  { n: "10", label: "Contact", href: "/contact" },
+  { n: "04", label: "Articles", href: "/blog" },
+  { n: "05", label: "Book Reviews", href: "/book-reviews" },
+  { n: "06", label: "Evidence Library", href: "/evidence-library" },
+  { n: "07", label: "AI Studio", href: "/studio" },
+  { n: "08", label: "Newsletter", href: "/newsletter" },
+  { n: "09", label: "Resources", href: "/resources" },
+  { n: "10", label: "Media", href: "/media" },
+  { n: "11", label: "Contact", href: "/contact" },
 ];
 
 export default function Nav() {
