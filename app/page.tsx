@@ -142,12 +142,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* BLOG CATEGORIES */}
+      {/* ARTICLES */}
       <section className="hairline">
         <div className="container-page py-16 sm:py-24">
           <div className="flex items-baseline justify-between mb-10">
-            <p className="eyebrow">The Blog</p>
+            <p className="eyebrow">Articles</p>
             <Link href="/blog" className="bracket-link">
+              View all
+            </Link>
+          </div>
+          {BLOG_POSTS.length === 0 ? (
+            <p className="text-ink-dim leading-relaxed max-w-prose">
+              Nothing published yet.
+            </p>
+          ) : (
+            <ul className="hairline max-w-prose">
+              {[...BLOG_POSTS]
+                .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+                .slice(0, 3)
+                .map((post) => (
+                  <li key={post.slug} className="hairline py-6 first:border-0 first:pt-0">
+                    <Link href={`/blog/${post.slug}`} className="group block">
+                      <h3 className="font-display text-2xl group-hover:text-brass transition-colors duration-300 mb-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-ink-dim text-sm leading-relaxed">{post.excerpt}</p>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      {/* BOOK REVIEW CATEGORIES */}
+      <section className="hairline">
+        <div className="container-page py-16 sm:py-24">
+          <div className="flex items-baseline justify-between mb-10">
+            <p className="eyebrow">Book Reviews</p>
+            <Link href="/book-reviews" className="bracket-link">
               View all
             </Link>
           </div>
@@ -155,7 +188,7 @@ export default function HomePage() {
             {CATEGORIES.map((cat) => (
               <li key={cat.slug} className="hairline">
                 <Link
-                  href={`/blog?category=${cat.slug}`}
+                  href={`/book-reviews?category=${cat.slug}`}
                   className="group flex items-center justify-between py-5"
                 >
                   <span className="font-display text-xl group-hover:text-brass transition-colors duration-300">
