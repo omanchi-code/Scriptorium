@@ -57,11 +57,11 @@ The mango tree doesn't get a vote in what it becomes. But you're not soil. You g
 
 *This is one of four lines of evidence explored in* The Sonship of Jesus: Investigations in the Quran & Bible. Available at https://omanchi-job-agbo.selstack.com/ or https://omanchi-job-agbo.netlify.app/.`,
   },
-];, {
-         slug: "adams-likeness",
-         title: "Adam's Likeness: What the Quran's Own Comparison Reveals About Jesus",
-         category: "theology",
-         excerpt:
+]:, {
+    slug: "adams-likeness",
+    title: "Adam's Likeness: What the Quran's Own Comparison Reveals About Jesus",
+    category: "theology",
+    excerpt:
       "The Quran itself draws the comparison — Jesus came into being exactly as Adam did — and Scripture calls Adam the Son of God, which leaves an honest question about what that same comparison makes Jesus.",
     publishedAt: "2026-09-06",
     content: `There's a verse in the Quran that Muslims quote often when the subject of Jesus turns to sonship. It appears just moments after Mary's own bewildered question, and it's worth sitting with a little longer than a soundbite allows.
@@ -121,4 +121,4 @@ The Quran didn't reach for a random comparison in 3:59. It reached for the one f
 *This is one of four lines of evidence explored in* The Sonship of Jesus: Investigations in the Quran & Bible, available @ 👇🏽👇🏽
 
 https://omanchi-job-agbo.selstack.com/`,
-  }, 
+  },
