@@ -57,4 +57,68 @@ The mango tree doesn't get a vote in what it becomes. But you're not soil. You g
 
 *This is one of four lines of evidence explored in* The Sonship of Jesus: Investigations in the Quran & Bible. Available at https://omanchi-job-agbo.selstack.com/ or https://omanchi-job-agbo.netlify.app/.`,
   },
-];
+];,{
+    slug: "adams-likeness",
+    title: "Adam's Likeness: What the Quran's Own Comparison Reveals About Jesus",
+    category: "theology",
+    excerpt:
+      "The Quran itself draws the comparison — Jesus came into being exactly as Adam did — and Scripture calls Adam the Son of God, which leaves an honest question about what that same comparison makes Jesus.",
+    publishedAt: "2026-09-06",
+    content: `There's a verse in the Quran that Muslims quote often when the subject of Jesus turns to sonship. It appears just moments after Mary's own bewildered question, and it's worth sitting with a little longer than a soundbite allows.
+
+Quran 3:47 records Mary's response to the angel's announcement:
+
+"She said: how can I have a son O Lord when no man has touched me? He said: that is how God creates what He wills. When He decrees a thing He says be and it is."
+
+It's a fair question. In the world we all live in, conception happens one way — by a man and woman coming together. Mary knew this as well as anyone, which is exactly why she asked it. But the very next verse the Quran offers as an answer is the one worth pausing on:
+
+Quran 3:59 — "For God the likeness of Jesus is as that of Adam, whom He fashioned from dust and said be, and he was."
+
+Jesus, the Quran says, is like Adam. Not like the rest of us — like Adam specifically. That's a deliberate comparison, and it's worth asking why the Quran reaches for Adam rather than, say, Isaac or Isaiah or any other miraculously-born figure in scripture.
+
+## Two Men, One Kind of Beginning
+
+Here's the thing about human origins: from Adam until the last person who will ever be born, every single human being has come into existence the same way — a man and a woman, together. That's the rule, no exceptions. It's so fixed a law that Scripture treats its absence as noteworthy. When Lot's daughters feared they'd never have children, they said plainly, "there is not a man in the earth to come in unto us after the manner of all the earth" (Genesis 19:31). Sex is "the manner of all the earth." It is the only door through which mankind — with two exceptions — has ever entered this world.
+
+Those two exceptions are Adam and Jesus.
+
+Look at how each came to be, in both the Bible and the Quran:
+
+Genesis 2:7 — "And the Lord God formed man of the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul."
+
+Quran 15:26, 29 — "Man We fashioned from fermented clay dried tingling hard. And when I have fashioned him and breathed into him of my Spirit, bow before him in homage."
+
+Adam wasn't born. He was formed — dust met the breath, the Spirit, of God, and a living man stood up. No mother. No father. Just God pouring Himself into clay.
+
+Now watch what both books say about Jesus:
+
+Luke 1:35 — "The Holy Ghost shall come upon thee, and the power of the Highest shall overshadow thee."
+
+Quran 21:91; 66:12 — "Remember her who preserved her chastity, into whom We breathed a new life from Us... And of Mary, daughter of Imran, who guarded her chastity, so that We breathed a new life into her from Us."
+
+Mary, like all of us, was dust — flesh formed from the ground, destined to return to it (Genesis 3:19). And into that dust, once again, God breathed. Not a man's seed. God's own breath. The same pattern as Adam, run a second time, this time through a woman rather than directly from the soil.
+
+## The Simple Equation
+
+Put side by side, the pattern is unmistakable:
+
+God + dust/clay = Adam and Jesus
+
+Man (dust) + woman (dust) = the rest of mankind
+
+Or another way to say it: God meets clay equals Sons of God. Clay meets clay equals Sons of Men.
+
+This isn't a stretch of interpretation. It's the Quran's own comparison in 3:59 — Jesus is like Adam. So the real question a fair-minded reader has to answer is simply this: whose son is Adam?
+
+Scripture answers that question directly. Luke 3:38, tracing the genealogy of Jesus all the way back through history, arrives finally at "Adam, which was the son of God." Not the son of dust. Not the son of nobody. The Bible calls him what his origin actually makes him — God's son, because God alone is the one who gave him life.
+
+If Adam, having no human father and no human mother, is rightly called the Son of God — and if the Quran itself says Jesus came into being the very same way — then consistency demands an honest answer to a simple question: if Adam is not the "son of nobody," how can Jesus be?
+
+The Quran didn't reach for a random comparison in 3:59. It reached for the one figure in all of human history whose origin mirrors Jesus' own — and in doing so, it left a signpost pointing exactly where the Bible has always pointed: to Jesus as the Son of God.
+
+---
+
+*This is one of four lines of evidence explored in* The Sonship of Jesus: Investigations in the Quran & Bible, available @ 👇🏽👇🏽
+
+https://omanchi-job-agbo.selstack.com/`,
+  }, 
