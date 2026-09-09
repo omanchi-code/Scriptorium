@@ -57,7 +57,7 @@ The mango tree doesn't get a vote in what it becomes. But you're not soil. You g
 
 *This is one of four lines of evidence explored in* The Sonship of Jesus: Investigations in the Quran & Bible. Available at https://omanchi-job-agbo.selstack.com/ or https://omanchi-job-agbo.netlify.app/.`,
   },
-{
+  {
     slug: "adams-likeness",
     title: "Adam's Likeness: What the Quran's Own Comparison Reveals About Jesus",
     category: "theology",
@@ -122,3 +122,4 @@ The Quran didn't reach for a random comparison in 3:59. It reached for the one f
 
 https://omanchi-job-agbo.selstack.com/`,
   },
+];
