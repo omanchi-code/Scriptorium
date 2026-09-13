@@ -59,7 +59,7 @@ The mango tree doesn't get a vote in what it becomes. But you're not soil. You g
   },
   {
     slug: "adams-likeness",
-    title: "Adam's Likeness: What the Quran's Own Comparison Reveals About Jesus",
+    title: "Adam's Likeness",
     category: "theology",
     excerpt:
       "The Quran itself draws the comparison — Jesus came into being exactly as Adam did — and Scripture calls Adam the Son of God, which leaves an honest question about what that same comparison makes Jesus.",
