@@ -65,6 +65,12 @@ model User {
   lockoutUntil        DateTime?
 }
 
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
 // One chapter, one publishing intent, many coordinated outputs. Every
 // Generation belongs to exactly one of these — the model that makes
 // "which outputs came from working on this chapter together" an
