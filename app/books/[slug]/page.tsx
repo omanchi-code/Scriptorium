@@ -38,9 +38,16 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
       <div className="hairline pt-10 grid sm:grid-cols-3 gap-8 text-sm">
         <div>
+        <div>
           <p className="eyebrow mb-3">Sample chapter</p>
           <p className="text-ink-dim leading-relaxed">
-            Coming soon &mdash; a free excerpt will be available here.
+            {book.slug === "the-sonship-of-jesus" ? (
+              <Link href={`/books/${book.slug}/sample`} className="text-brass underline underline-offset-4">
+                Read a free sample
+              </Link>
+            ) : (
+              "Coming soon — a free excerpt will be available here."
+            )}
           </p>
         </div>
         <div>
