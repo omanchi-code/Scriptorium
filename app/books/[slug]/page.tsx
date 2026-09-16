@@ -38,7 +38,6 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
       <div className="hairline pt-10 grid sm:grid-cols-3 gap-8 text-sm">
         <div>
-        <div>
           <p className="eyebrow mb-3">Sample chapter</p>
           <p className="text-ink-dim leading-relaxed">
             {book.slug === "the-sonship-of-jesus" ? (
