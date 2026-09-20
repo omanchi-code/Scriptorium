@@ -4,6 +4,7 @@ import BookCard from "@/domains/books/components/BookCard";
 import { CATEGORIES } from "@/domains/knowledge/taxonomy";
 import TransformationDiagram from "@/domains/publishing/components/TransformationDiagram";
 import { BLOG_POSTS } from "@/domains/blog/posts";
+import { BOOK_REVIEWS } from "@/domains/book-reviews/reviews";
 
 const WORKFLOW = ["Research", "Writing", "Publishing", "Media", "Learning", "Impact"];
 
