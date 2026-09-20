@@ -196,7 +196,7 @@ export default function HomePage() {
                     {cat.label}
                   </span>
                   <span className="font-mono text-xs text-ink-dim">
-                    {cat.count}
+                    {BOOK_REVIEWS.filter((r) => r.category === cat.slug).length}
                   </span>
                 </Link>
               </li>
